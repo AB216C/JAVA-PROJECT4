@@ -6,7 +6,7 @@ public class JDBCTest {
         try(Connection conn = DriverManager.getConnection(url)){
             Statement stmt = conn.createStatement();
 
-            //Create students
+            //Create student
 
             String createTableSQL = "CREATE TABLE users(id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(200))";
             stmt.executeUpdate(createTableSQL);
