@@ -4,7 +4,6 @@ import java.util.List;
 import java.sql.*;
 import java.io.*;
 
-
 public class JDBCTest {
     private static Connection conn;
 
@@ -18,7 +17,6 @@ public class JDBCTest {
         }
         System.out.println("Exported students to " + filename);
     }
-
 
     private static void importStudentsFromFile(String filename) throws IOException, SQLException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -106,7 +104,46 @@ public class JDBCTest {
             System.out.println("\nStudents after import:");
             getAllStudents().forEach(s -> System.out.println(s.getId() + ":" + s.getName() +"," + s.getGrade()+"," + s.getEmail()));
 
+            //Split into two halves
 
+            int mid = allStudents.size()/2;
+            List<Student>firstHalf = allStudents.subList(0,mid);
+            List<Student>secondHalf = allStudents.subList(mid,allStudents.size());
+
+            //Printing first half
+            Thread t1 = new Thread (()->{
+                System.out.println("\n------ Thread 1 : First half--------");
+                for(Student s:firstHalf){
+                    System.out.println(Thread.currentThread().getName() + ": " + s.getId() + " - " + s.getName() + ", " + s.getGrade());
+                    try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+                }
+
+            });
+
+            //Printing Second Half
+
+            Thread t2 = new Thread (()->{
+                System.out.println("\n------ Thread 2 : Second half--------");
+                for(Student s:secondHalf){
+                    System.out.println(Thread.currentThread().getName() + ": " + s.getId() + " - " + s.getName() + ", " + s.getGrade());
+                    try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+                }
+
+            });
+
+            //Start threads
+            t1.start();
+            t2.start();
+
+            //Waiting for both threads to finish
+
+            try {
+                t1.join();
+                t2.join();
+                System.out.println("\nBoth threads have finished processing.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
