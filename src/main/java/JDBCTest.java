@@ -8,7 +8,7 @@ public class JDBCTest {
 
             //Create student
 
-            String createTableSQL = "CREATE TABLE users(id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(200))";
+            String createTableSQL = "CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY , name VARCHAR(100), email VARCHAR(200))";
             stmt.executeUpdate(createTableSQL);
 
             Student student1= new Student(1,"Briana", "b@gmail.com");
@@ -49,7 +49,7 @@ public class JDBCTest {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
-                System.out.println(id + "_" + name+ "_" +email);
+                System.out.println(id + "/" + name+ "/" +email);
             }
 
         } catch (SQLException e) {
