@@ -21,10 +21,10 @@ public class JDBCTest {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 4) {
-                    String name = parts[1].trim();
-                    String email = parts[2].trim();
-                    String grade = parts[3].trim();
+                if (parts.length == 3) {
+                    String name = parts[0].trim();
+                    String email = parts[1].trim();
+                    String grade = parts[2].trim();
                     createStudent(new Student(name, email,grade));
                 }
             }
@@ -158,7 +158,7 @@ public class JDBCTest {
             int mid = allStudents.size()/2;
             List<Student>firstHalf = allStudents.subList(0,mid);
             List<Student>secondHalf = allStudents.subList(mid,allStudents.size());
-            //Printing first half
+            //Printing first-half
             Thread t1 = new Thread (()->{
                 System.out.println("\n------ Thread 1 : First half--------");
                 for(Student s:firstHalf){
@@ -177,8 +177,6 @@ public class JDBCTest {
             //Start threads
             t1.start();
             t2.start();
-
-            //Waiting for both threads to finish
             try {
                 t1.join();
                 t2.join();
