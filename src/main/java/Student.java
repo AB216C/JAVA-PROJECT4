@@ -4,8 +4,7 @@ private String name;
 private String email;
 private String grade;
 
-
-    // Constructor for auto-generated ID
+    // This constructor Auto-generating ID
     public Student(String name, String email, String grade) {
         this.name = name;
         this.email = email;
@@ -17,7 +16,6 @@ private String grade;
         this.email = email;
         this.grade = grade;
     }
-
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
     public String getName() {return name;}

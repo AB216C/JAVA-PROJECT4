@@ -1,5 +1,5 @@
-1,Jean,j@gmail.com,A
-2, Ben Patrick ,benp234@gmail.com,B
-4,Mary,mary@gmail.com,C
-5,Peter,peter@gmail.com,B
-6,Anna,anna@gmail.com,C
+1.Jean,j@gmail.com,A
+2. Ben Patrick ,benp234@gmail.com,B
+4.Mary,mary@gmail.com,C
+5.Peter,peter@gmail.com,B
+6.Anna,anna@gmail.com,C
